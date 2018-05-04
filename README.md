@@ -47,4 +47,12 @@ Char | offset
 
 After sorting the characters by the ordering of the offset I recieved the flag: ```389R-{n0ice}```
 
+In order to confirm that it was the correct flag I changed the permissions of file ```onebyone``` by using ```chmod 777 onebyone``` and ran ```./onebyone 389R-{n0ice}```:
+
+
+![alt text]()
+
+
+
+
 ## Part 2

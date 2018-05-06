@@ -105,6 +105,8 @@ I dont know about you, but if you were to read that in descending order that loo
 
 ## Part 2
 
+__You are trying to access a restricted resource on the Briong server, which uses a vulnerable password checker. Luckily, you have someone on the inside that has leaked the source code for the checker. Scan through the code to see if you can break in.__
+
 For part 2, it was easy enough to look over the code in ```outofbounds.c``` to find that the buffer size was 21 and the read size was 22.
 
 ![alt text](https://github.com/yreiss1/Binaries-2/blob/master/outofbounds.png)

@@ -106,3 +106,31 @@ local_9h | 33        | 3
 I dont know about you, but if you were to read that in descending order that looks like alot like a flag, which I assume it is: ```389R-{ye}```
 
 ## Part 2
+
+For part 2, it was easy enough to look over the code in ```outofbounds.c``` to find that the buffer size was 21 and the read size was 22.
+
+```
+#define BUFFER_SIZE 21
+#define READ_SIZE 22
+```
+
+Another important detail I noticed while scanning the c code was this:
+
+```
+char buffer[BUFFER_SIZE];
+unsigned char valid = 0;
+```
+
+Meaning that if we overflow the buffer array, we could possibly change```valid``` because they are declared one after the other. And that is exactly what I did... by inserting anything greater than 21 characters, I triggered a buffer overflow that altered the ```valid``` value and provided me with the flag!
+
+```
+if (valid)
+    {
+      printf("Authenticated: %s\n", flag);
+      return 0;
+    }
+```
+
+Flag: ```CMSC389R-{wat_r_u_doing}```
+
+![alt text]()

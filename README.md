@@ -8,19 +8,17 @@ __You are given two programs written in C. Your task is to reverse engineer both
 
 I started with the file called ```onebyone``` and the first thing I did was to run ```xxd onebyone``` to see if I could identify anything malformed or mishapen, I wasn't able to identify any major problems. 
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/onebyone-xxd.png)
 
 The second command I used was to see if I could find the flag using ```strings onebyone | grep "FLAG-{"``` but this did not succeed as well.
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/onebyoone-strings.png)
 
 My third approach involved using ```radare2``` in order to reverse engineer the executable by using ```radare2 onebyone```. I was then provided with the radare2 prompt, to which I intered ```aaa``` in order to analyze everything, and then ```s main``` to change the address to that of the main function, and then dissasembled using ```pdf``` to get the assembly:
 
-![alt text]()
-
 To enter graph mode I entered ```VV```, and was presented with this graph of the dissassembled executable:
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/onebyone-graph.png)
 
 Running down the graph I concatenated all the characters that was bieng compared and got this string:
 
@@ -50,12 +48,12 @@ After sorting the characters by the ordering of the offset I recieved the flag: 
 In order to confirm that it was the correct flag I changed the permissions of file ```onebyone``` by using ```chmod 777 onebyone``` and ran ```./onebyone 389R-{n0ice}```:
 
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/onebyone-final.png)
 
 
 In order to understand what ```stackexhange``` is doing I skipped the previous steps that I took with ```onebyone``` where I used ```xxd``` and ```strings``` and went straight to ```radare2```. Using the command ```r2 stackexchange``` I opened the radare2 program, and used ```aa``` to analyse all, and used ```s main``` in order to reach the main code and used ```pdf``` to disassemble it. I then used ```VV``` to enter visual mode, and was given this screen:
 
-![alt text]() 
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/stackexchange.png) 
 
 By tracing the operations the commands in the screenshot above by hand I was able to understand what the program was doing and decipher the flag!
 
@@ -109,6 +107,8 @@ I dont know about you, but if you were to read that in descending order that loo
 
 For part 2, it was easy enough to look over the code in ```outofbounds.c``` to find that the buffer size was 21 and the read size was 22.
 
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/outofbounds.png)
+
 ```
 #define BUFFER_SIZE 21
 #define READ_SIZE 22
@@ -133,4 +133,4 @@ if (valid)
 
 Flag: ```CMSC389R-{wat_r_u_doing}```
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Binaries-2/blob/master/Part2.png)
